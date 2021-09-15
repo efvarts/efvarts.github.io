@@ -6,6 +6,7 @@ Each round choose one player to save.
 Icons/doctor.png
 Detective
 Each round choose one player to investigate.
+Icons/detective.png
 Innocent
 You have no special abilities.
 Icons/innocent1.png
