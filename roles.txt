@@ -1,3 +1,23 @@
 Mafia
 Each round choose one player to kill.
 Icons/mafia.png
+Doctor
+Each round choose one player to save.
+Icons/doctor.png
+Detective
+Each round choose one player to investigate.
+Innocent
+You have no special abilities.
+Icons/innocent1.png
+Little Girl
+You may peek during Mafia's turn. But if you are caught, you are instantly killed.
+Icons/littlegirl.png
+Jester
+Your goal is to get yourself voted off during the town vote, only then will you win.
+Icons/jester.png
+Hunter
+You have no special abilities, except when you die you may kill one person of your choosing.
+Icons/hunter.png
+Cupid
+On the very first round you choose two people to fall in love. If one dies, the other dies from grief.
+Icons/cupid.png
