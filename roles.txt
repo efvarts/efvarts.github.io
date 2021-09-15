@@ -1,0 +1,3 @@
+Mafia
+Each round choose one player to kill.
+Icons/mafia.png
