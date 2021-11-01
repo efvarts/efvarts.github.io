@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mafia Role Generation</title>
+        <script src="roles.js" defer></script>
+        <link rel="stylesheet" href="css/style.css">
+
+        <link rel="icon" href="Icons/mafia.png" type="image/x-icon">
+    </head>
+    <body>
+        <div id="player">
+            <h1 class="playerHeader hidden">&lt;</h1>
+            <input class="playerHeader" type="text" value="Player 1">
+            <h1 class="playerHeader">&gt;</h1>
+        </div>
+
+        <div id="hideRole">
+           <p>Click to reveal role for 3 seconds...</p> 
+        </div>
+
+        <div id="role">
+            <h1 id="roleTitle"></h1>
+            <img id="roleImage">
+            <p id="roleDescription"></p>
+        </div>
+    </body>
+</html>

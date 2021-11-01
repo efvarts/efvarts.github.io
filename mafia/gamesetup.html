@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Game Setup</title>
+        <script src="gamesetup.js" defer></script>
+        <link rel="stylesheet" href="css/styleRoles.css">
+
+        <link rel="icon" href="Icons/mafia.png" type="image/x-icon">
+    </head>
+    <body>
+        <div id="roles">
+            <h1>Roles</h1>
+            <h4>Input the count of that role that you would like in game.</h3>
+
+            <!-- Roles will auto generate here -->
+        </div>
+
+        <h1 id="showSpecials">Show Specials &#9660;</h1>
+        <div id="special" class="hidden">
+            <h1>Special</h1>
+            <p>Black Plague: <input type="checkbox" class="gameRules special"><input type="number" min="0" class="hidden" placeholder="Number of players" id="blackPlagueCount"></p>
+            <p>All players are innocent, game ends when all are dead or a player suspects that black plague is in play.</p>
+        </div>
+
+        <button>Submit</button>
+    </body>
+</html>

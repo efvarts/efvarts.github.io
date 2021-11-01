@@ -1,0 +1,117 @@
+html {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  margin: 0px;
+  overflow: hidden;
+}
+
+#role {
+  margin-top: 10vh;
+}
+
+#roleTitle {
+  font-size: 50px;
+}
+
+#roleImage {
+  width: 30%;
+}
+
+#roleDescription {
+  font-size: 30px;
+}
+
+.playerHeader {
+  display: inline-block;
+  letter-spacing: 2px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.playerHeader:nth-of-type(1):hover {
+  cursor: pointer;
+}
+
+.playerHeader:nth-of-type(2):hover {
+  cursor: pointer;
+}
+
+input {
+  height: 30px;
+  text-align: center;
+  border: none;
+  font-size: 24px;
+  outline: none;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  width: 7em;
+  -webkit-transition: -webkit-box-shadow 0.2s linear;
+  transition: -webkit-box-shadow 0.2s linear;
+  transition: box-shadow 0.2s linear;
+  transition: box-shadow 0.2s linear, -webkit-box-shadow 0.2s linear;
+}
+
+input:hover {
+  cursor: text !important;
+  -webkit-box-shadow: 0px 2px;
+          box-shadow: 0px 2px;
+}
+
+input:focus {
+  -webkit-box-shadow: 0px 2px;
+          box-shadow: 0px 2px;
+}
+
+.hidden {
+  display: none;
+}
+
+#player {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+#hideRole {
+  background-color: black;
+  color: white;
+  margin: 0px;
+  position: absolute;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+
+#hideRole p {
+  font-size: 25px;
+  margin-top: 30vh;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+@-webkit-keyframes button {
+  from {
+    -webkit-box-shadow: 0px 0px;
+            box-shadow: 0px 0px;
+  }
+  to {
+    -webkit-box-shadow: 0px 5px;
+            box-shadow: 0px 5px;
+  }
+}
+
+@keyframes button {
+  from {
+    -webkit-box-shadow: 0px 0px;
+            box-shadow: 0px 0px;
+  }
+  to {
+    -webkit-box-shadow: 0px 5px;
+            box-shadow: 0px 5px;
+  }
+}
+/*# sourceMappingURL=style.css.map */

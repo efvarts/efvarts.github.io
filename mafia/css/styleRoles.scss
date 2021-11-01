@@ -1,0 +1,53 @@
+html {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    text-align: center;
+    user-select: none;
+}
+
+input {
+    width: 70px;
+    height: 25px;
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+#roles {
+    margin-top: 70px;
+}
+
+.disabled {
+    text-decoration: line-through;
+    color: #888;
+}
+
+.hidden {
+    display: none;
+}
+
+#blackPlagueCount {
+    width: 150px;
+    font-size: 15px;
+}
+
+#showSpecials {
+    cursor: pointer;
+}
+
+button {
+    margin-top: 20px;
+    padding: 20px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    border: solid 1px black;
+    background-color: white;
+    user-select: none;
+
+    transition: box-shadow 0.1s linear;
+
+    &:hover {
+        background-color: #ddd;
+        cursor: pointer;
+        box-shadow: 5px 5px;
+    }
+}
