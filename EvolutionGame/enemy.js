@@ -1,15 +1,16 @@
 import { Projectile } from './projectile.js';
 import { enemies } from './script.js';
 import { player } from './script.js';
+import { health } from './script.js';
 
 var c = document.querySelector('canvas');
 var ctx = c.getContext('2d');
 
 var width = document.body.clientWidth;
-var height = document.body.clientHeight;
+var height = document.body.clientHeight - 80;
 
 export class Enemy {
-    constructor (x, y, speed, size, health) {
+    constructor (x, y, speed, size, health, attackDist, scoreDeath) {
         this.x = x;
         this.y = y;
 
@@ -17,9 +18,16 @@ export class Enemy {
         this.size = size;
 
         this.health = health;
+        this.eAge = 0;
+
+        this.attackDist = attackDist;
+
+        this.attackedYet = false;
 
         // Projectiles that already hit
         this.projectiles = [];
+
+        this.scoreDeath = scoreDeath;
 
         enemies.push(this);
     }
@@ -60,6 +68,11 @@ export class Enemy {
         if (this.y > height - this.size) {
             this.y = height - this.size;
         }
+
+        if (dist < this.attackDist && (this.eAge % 100 == 0 || !this.attackedYet) && !health.invincible) {
+            health.h--;
+            this.attackedYet = true;
+        }
     }
 
     draw() {
@@ -70,8 +83,8 @@ export class Enemy {
 }
 
 export class Ranger extends Enemy {
-    constructor (x, y, speed, size, health) {
-        super(x, y, speed, size, health);
+    constructor (x, y, speed, size, health, attackDist, scoreDeath) {
+        super(x, y, speed, size, health, attackDist, scoreDeath);
 
         this.age = 0;
 
@@ -81,6 +94,6 @@ export class Ranger extends Enemy {
     }
 
     attack() {
-        new Projectile(this.x + 10, this.y + 10, player.x, player.y, 7, true, 'lightblue');
+        new Projectile(this.x + 10, this.y + 10, player.x + 10 + player.vx * 30, player.y + 10 + player.vy * 30, 7, true, 'lightblue');
     }
 }

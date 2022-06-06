@@ -1,9 +1,11 @@
 import { projectiles } from "./script.js";
+import { player } from "./script.js";
+import { health } from "./script.js";
 var c = document.querySelector('canvas');
 var ctx = c.getContext('2d');
 
 var width = document.body.clientWidth;
-var height = document.body.clientHeight;
+var height = document.body.clientHeight - 80;
 
 // X, y coordinates, direction is rise and run, enemyBool is if shot by enemy
 export class Projectile {
@@ -12,6 +14,7 @@ export class Projectile {
         this.y = y;
 
         this.shotByEnemy = enemyBool;
+        this.shotPlayer = false;
         this.color = color;
 
         let dx = pX - x;
@@ -71,6 +74,15 @@ export class Projectile {
         this.y += this.dy;
 
         this.age++;
+
+        let dx = player.x - this.x;
+        let dy = player.y - this.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 8 && this.shotByEnemy && !this.shotPlayer && !health.invincible) {
+            this.shotPlayer = true;
+            health.h -= 5;
+        }
     }
     
     draw() {
