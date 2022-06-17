@@ -1,7 +1,9 @@
 import { Projectile } from './projectile.js';
-import { enemies } from './script.js';
-import { player } from './script.js';
-import { health } from './script.js';
+import { enemies }    from './script.js';
+import { player }     from './script.js';
+import { health }     from './script.js';
+import { Bomb }       from './weapons.js';
+
 
 var c = document.querySelector('canvas');
 var ctx = c.getContext('2d');
@@ -28,6 +30,9 @@ export class Enemy {
         this.projectiles = [];
 
         this.scoreDeath = scoreDeath;
+
+        this.status = [];
+        this.afflictedTime = [];
 
         enemies.push(this);
     }
@@ -73,6 +78,12 @@ export class Enemy {
             health.h--;
             this.attackedYet = true;
         }
+
+        for (let i = 0; i < this.status.length; i++) {
+            if (this.afflictedTime[i] == undefined) {
+                this.afflictedTime.push(0);
+            }
+        }
     }
 
     draw() {
@@ -87,6 +98,7 @@ export class Ranger extends Enemy {
         super(x, y, speed, size, health, attackDist, scoreDeath);
 
         this.age = 0;
+        this.attackTime = 50;
 
         if (this.speed > 2) {
             this.speed = 2;
@@ -95,5 +107,18 @@ export class Ranger extends Enemy {
 
     attack() {
         new Projectile(this.x + 10, this.y + 10, player.x + 10 + player.vx * 30, player.y + 10 + player.vy * 30, 7, true, 'lightblue');
+    }
+}
+
+export class Bomber extends Enemy {
+    constructor (x, y, speed, size, health, attackDist, scoreDeath) {
+        super(x, y, speed, size, health, attackDist, scoreDeath);
+
+        this.age = 0;
+        this.attackTime = 150;
+    }
+
+    attack() {
+        new Bomb(this, player.x + 10 + player.vx * 30, player.y + 10 + player.vy * 30, 100, true);
     }
 }

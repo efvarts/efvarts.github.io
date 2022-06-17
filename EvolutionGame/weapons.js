@@ -1,7 +1,8 @@
 import { ParticleSquare } from './particles.js';
-import { projectiles }    from './script.js';
+import { health, projectiles }    from './script.js';
 import { particles }      from './script.js';
 import { enemies }        from './script.js';
+import { player }         from './script.js';
 
 var c = document.querySelector('canvas');
 var ctx = c.getContext('2d');
@@ -9,9 +10,11 @@ var ctx = c.getContext('2d');
 // Target x and target y
 // Pos is firer position
 export class Bomb {
-    constructor (pos, x, y, spread) {
+    constructor (pos, x, y, spread, shotByEnemy) {
         this.x = pos.x;
         this.y = pos.y;
+
+        this.shotByEnemy = shotByEnemy;
 
         this.spread = spread;
 
@@ -36,16 +39,30 @@ export class Bomb {
 
         if (this.age > this.maxAge - 1) {
             for (let i = 0; i < 20; i++) {
-                new ParticleSquare({x: this.x + 10, y: this.y + 10}, 0, this.spread + Math.random() * 10, false, ['red', 'yellow', 'orange', '#353839']);
+                new ParticleSquare({x: this.x + 10, y: this.y + 10}, 0, this.spread + Math.random() * 10, false, ["#FF2400", "#FF4500", "#FF4500", "#FEBE10", "#343434"]);
             }
 
-            for (let i = 0; i < enemies.length; i++) {
-                let dx = enemies[i].x - this.x;
-                let dy = enemies[i].y - this.y;
+            if (!this.shotByEnemy) {
+                for (let i = 0; i < enemies.length; i++) {
+                    let dx = enemies[i].x - this.x;
+                    let dy = enemies[i].y - this.y;
+                    let dist = Math.sqrt(dx * dx + dy * dy);
+
+                    if (dist < this.spread) {
+                        enemies[i].health -= 10;
+                        enemies[i].status.push("fire");
+                    }
+                }
+            } else {
+                let dx = player.x - this.x;
+                let dy = player.y - this.y;
                 let dist = Math.sqrt(dx * dx + dy * dy);
 
-                if (dist < this.spread) {
-                    enemies[i].health -= 10;
+                if (dist < this.spread && !health.invincible) {
+                    health.h -= 10;
+                    if (!player.status.includes("fire")) {
+                        player.status.push("fire");
+                    }
                 }
             }
         }
@@ -53,14 +70,14 @@ export class Bomb {
 
     draw() {
         ctx.beginPath();
-        ctx.fillStyle = "#353839";
+        ctx.fillStyle = "#483c32";
         ctx.rect(this.x, this.y, 20, 20);
         ctx.fill();
-        ctx.strokeStyle = "white";
+        ctx.strokeStyle = "#232b2b";
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        new ParticleSquare({x: this.x + 5, y: this.y - 10}, 1, 50, true, ['red', 'orange', 'yellowe', '#353839']);
+        new ParticleSquare({x: this.x + 5, y: this.y - 10}, 1, 50, true, ["#FF2400", "#FF4500", "#FF4500", "#FEBE10"]);
     }
 }
 
@@ -122,7 +139,13 @@ export class Sword {
             }
 
             if ((dist < 110 && hitboxY && hitboxX) || dist <= 10) {
-                enemy.health -= 2;
+                enemy.health -= 3;
+
+                if (player.status.includes("fire")) {
+                    if (!enemy.status.includes("fire")) {
+                        enemy.status.push("fire");
+                    }
+                }
             }
         }
 
@@ -148,7 +171,7 @@ export class Sword {
                 if (projectile.y < this.py && this.y < projectile.y) hitboxY = true;
             }
             
-            if (dist < 100 && hitboxX && hitboxY) {
+            if (dist < 100 && hitboxX && hitboxY && projectile.shotByEnemy) {
                 projectile.dx *= -1;
                 projectile.dy *= -1;
 

@@ -8,4 +8,9 @@ canvas {
   background: #141414;
   display: block;
 }
+
+@font-face {
+  font-family: PressStart2P;
+  src: url("PressStart2P-Regular.ttf");
+}
 /*# sourceMappingURL=style.css.map */

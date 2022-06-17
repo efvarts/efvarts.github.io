@@ -67,25 +67,12 @@ export class ParticleSquare extends Particle {
         if (this.colorOrder) {
             let interval = this.maxAge / this.color.length;
             let color = Math.floor(this.age / interval);
-            ctx.fillStyle = this.color[color];
+            ctx.fillStyle = this.color[color] ?? this.color[this.color.length - 1];
         } else {
             ctx.fillStyle = this.color;
         }
 
         ctx.beginPath();
         ctx.fillRect(this.x, this.y, 10, 10);
-    }
-}
-
-export class ParticleCircle extends Particle {
-    constructor (pos, direction, lifeTime, orderedColor, ...colors) {
-        super(pos, direction, lifeTime, orderedColor, ...colors);
-    }
-
-    draw() {
-        ctx.beginPath();
-        ctx.fillStyle = this.color;
-        ctx.arc(this.x, this.y, 5, 0, 2 * Math.PI);
-        ctx.fill();
     }
 }

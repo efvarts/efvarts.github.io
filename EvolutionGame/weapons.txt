@@ -1,0 +1,10 @@
+gun - regular gun
+sword - regular sword
+bomb - regular bomb
+machineGun - faster attack gun
+
+status effects:
+    fire
+    poison
+
+draw status image to health bar

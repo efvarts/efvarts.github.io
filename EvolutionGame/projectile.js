@@ -9,13 +9,15 @@ var height = document.body.clientHeight - 80;
 
 // X, y coordinates, direction is rise and run, enemyBool is if shot by enemy
 export class Projectile {
-    constructor (x, y, pX, pY, speed, enemyBool, color) {
+    constructor (x, y, pX, pY, speed, enemyBool, color, status) {
         this.x = x;
         this.y = y;
 
         this.shotByEnemy = enemyBool;
         this.shotPlayer = false;
         this.color = color;
+
+        this.status = status;
 
         let dx = pX - x;
         let dy = pY - y;
@@ -51,6 +53,12 @@ export class Projectile {
             if (dist <= attackDist && !enemies[i].projectiles.includes(this)) {
                 enemies[i].health--;
                 enemies[i].projectiles.push(this);
+
+                if (this.status) {
+                    if (!enemies[i].status.includes(this.status)) {
+                        enemies[i].status.push(this.status);
+                    }
+                }
             }
         }
     }
@@ -82,6 +90,12 @@ export class Projectile {
         if (dist < 8 && this.shotByEnemy && !this.shotPlayer && !health.invincible) {
             this.shotPlayer = true;
             health.h -= 5;
+
+            if (this.status) {
+                if (!player.status.includes(this.status)) {
+                    player.status.push(this.status);
+                }
+            }  
         }
     }
     
