@@ -1,6 +1,6 @@
 var size = prompt("Size of window (px): ");
 
-var newWindow = open('./snake.html', 'snake', `width=${size},height=${size}`)
+var newWindow = open('/Snake/snake.html', 'snake', `width=${size},height=${size}`)
 newWindow.focus();
 
 // alert(newWindow.location.href); // (*) about:blank, loading hasn't started yet
